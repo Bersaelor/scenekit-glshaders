@@ -58,21 +58,21 @@ class AllSettings: NSObject {
   // Simple, cyan sphere
   private class func sphereNode() -> SCNNode {
     let sphere = SCNSphere(radius: 3.0)
-    sphere.firstMaterial!.diffuse.contents = UIColor.cyanColor()
-    sphere.firstMaterial!.ambient.contents = UIColor.whiteColor()
+    sphere.firstMaterial!.diffuse.contents = UIColor.cyan
+    sphere.firstMaterial!.ambient.contents = UIColor.white
     return SCNNode(geometry: sphere)
   }
   
   // Green, rounded cube
   private class func cubeNode() -> SCNNode {
     let cube = SCNBox(width: 5.0, height: 5.0, length: 5.0, chamferRadius: 1.5)
-    cube.firstMaterial!.diffuse.contents = UIColor.greenColor()
-    cube.firstMaterial!.ambient.contents = UIColor.whiteColor()
+    cube.firstMaterial!.diffuse.contents = UIColor.green
+    cube.firstMaterial!.ambient.contents = UIColor.white
     return SCNNode(geometry: cube)
   }
   
   // Text!
-  private class func textNode(text: String) -> SCNNode {
+  private class func textNode(_ text: String) -> SCNNode {
     
     let textGeometry = SCNText(string: text, extrusionDepth: 1.0)
     textGeometry.font = UIFont(name: "Avenir", size: 2.0)
@@ -80,7 +80,7 @@ class AllSettings: NSObject {
 //    textGeometry.flatness = 0.2 // Smooth it more
 //    textGeometry.chamferRadius = 0.25
     textGeometry.firstMaterial!.diffuse.contents = UIColor(hue: 0.9, saturation: 0.8, brightness: 1.0, alpha: 1.0)
-    textGeometry.firstMaterial!.ambient.contents = UIColor.whiteColor()
+    textGeometry.firstMaterial!.ambient.contents = UIColor.white
     return SCNNode(geometry: textGeometry)
   }
   
@@ -88,7 +88,7 @@ class AllSettings: NSObject {
   private class func torusNode() -> SCNNode {
     let torus = SCNTorus(ringRadius: 4.0, pipeRadius: 1.5)
     torus.firstMaterial!.diffuse.contents = UIColor(hue: 0.4, saturation: 0.8, brightness: 1.0, alpha: 1.0)
-    torus.firstMaterial!.ambient.contents = UIColor.whiteColor()
+    torus.firstMaterial!.ambient.contents = UIColor.white
     return SCNNode(geometry: torus)
   }
   
@@ -96,15 +96,15 @@ class AllSettings: NSObject {
   private class func planets() -> SCNNode {
     let sun = SCNSphere(radius: 2.0)
     sun.firstMaterial!.diffuse.contents = UIColor(hue: 0.7, saturation: 0.8, brightness: 1.0, alpha: 1.0)
-    sun.firstMaterial!.ambient.contents = UIColor.whiteColor()
+    sun.firstMaterial!.ambient.contents = UIColor.white
     
     let moon = SCNSphere(radius: 1.0)
     moon.firstMaterial!.diffuse.contents = UIColor(hue: 0.5, saturation: 0.5, brightness: 0.9, alpha: 1.0)
-    moon.firstMaterial!.ambient.contents = UIColor.whiteColor()
+    moon.firstMaterial!.ambient.contents = UIColor.white
     
     let miniMoon = SCNSphere(radius: 0.5)
     moon.firstMaterial!.diffuse.contents = UIColor(hue: 0.3, saturation: 0.5, brightness: 0.9, alpha: 1.0)
-    moon.firstMaterial!.ambient.contents = UIColor.whiteColor()
+    moon.firstMaterial!.ambient.contents = UIColor.white
     
     
     let sunNode = SCNNode(geometry: sun)
@@ -124,12 +124,12 @@ class AllSettings: NSObject {
     miniMoonNode2.position = SCNVector3Make(-3, 0, 1)
     miniMoonNode3.position = SCNVector3Make(1, 0, -2)
     
-    moonNode.runAction(SCNAction.repeatActionForever(SCNAction.rotateByX(0, y: 4, z: 0, duration: 1)))
-    moonNode2.runAction(SCNAction.repeatActionForever(SCNAction.rotateByX(0, y: 1, z: 0, duration: 1)))
+    moonNode.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 4, z: 0, duration: 1)))
+    moonNode2.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 1, z: 0, duration: 1)))
     
-    miniMoonNode.runAction(SCNAction.repeatActionForever(SCNAction.rotateByX(0, y: 3, z: 0, duration: 1)))
-    miniMoonNode2.runAction(SCNAction.repeatActionForever(SCNAction.rotateByX(0, y: 2, z: 0, duration: 1)))
-    miniMoonNode3.runAction(SCNAction.repeatActionForever(SCNAction.rotateByX(0, y: 1, z: 0, duration: 1)))
+    miniMoonNode.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 3, z: 0, duration: 1)))
+    miniMoonNode2.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 2, z: 0, duration: 1)))
+    miniMoonNode3.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 1, z: 0, duration: 1)))
     
     sunNode.addChildNode(moonNode)
     dummySunNode.addChildNode(moonNode2)
@@ -137,8 +137,8 @@ class AllSettings: NSObject {
     moonNode2.addChildNode(miniMoonNode2)
     moonNode2.addChildNode(miniMoonNode3)
     
-    sunNode.runAction(SCNAction.repeatActionForever(SCNAction.rotateByX(0, y: 2, z: 0, duration: 1)))
-    dummySunNode.runAction(SCNAction.repeatActionForever(SCNAction.rotateByX(0, y: 3, z: 0, duration: 1)))
+    sunNode.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 2, z: 0, duration: 1)))
+    dummySunNode.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 3, z: 0, duration: 1)))
     
     let rootNode = SCNNode()
     rootNode.addChildNode(sunNode)

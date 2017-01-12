@@ -41,21 +41,21 @@ class GameViewController: UIViewController {
     scnView.backgroundColor = UIColor(hue: 0.8, saturation: 0.1, brightness: 0.2, alpha: 1.0)
     
     // add a tap gesture recognizer
-    let tapGesture = UITapGestureRecognizer(target: self, action: "handleTap:")
+    let tapGesture = UITapGestureRecognizer(target: self, action: #selector(GameViewController.handleTap(_:)))
     let gestureRecognizers : NSMutableArray = NSMutableArray()
-    gestureRecognizers.addObject(tapGesture)
+    gestureRecognizers.add(tapGesture)
     if let existingGestureRecognizers = scnView.gestureRecognizers {
-      gestureRecognizers.addObjectsFromArray(existingGestureRecognizers)
+      gestureRecognizers.addObjects(from: existingGestureRecognizers)
     }
     scnView.gestureRecognizers = (gestureRecognizers.copy() as! [UIGestureRecognizer])
     
     // Keep Shaders animating
-    scnView.playing = true
+    scnView.isPlaying = true
     scnView.loops = true
   }
   
   
-  func initLightsAndCamera(scene: SCNScene) {
+  func initLightsAndCamera(_ scene: SCNScene) {
     // create and add a camera to the scene
     let cameraNode = SCNNode()
     cameraNode.camera = SCNCamera()
@@ -67,22 +67,22 @@ class GameViewController: UIViewController {
     // create and add a light to the scene
     let lightNode = SCNNode()
     lightNode.light = SCNLight()
-    lightNode.light!.type = SCNLightTypeOmni
+    lightNode.light!.type = SCNLight.LightType.omni
     lightNode.position = SCNVector3(x: 0, y: 10, z: 10)
     scene.rootNode.addChildNode(lightNode)
     
     // create and add an ambient light to the scene
     let ambientLightNode = SCNNode()
     ambientLightNode.light = SCNLight()
-    ambientLightNode.light!.type = SCNLightTypeAmbient
-    ambientLightNode.light!.color = UIColor.darkGrayColor()
+    ambientLightNode.light!.type = SCNLight.LightType.ambient
+    ambientLightNode.light!.color = UIColor.darkGray
     scene.rootNode.addChildNode(ambientLightNode)
   }
   
   
-  func handleTap(gestureRecognize: UIGestureRecognizer) {
+  func handleTap(_ gestureRecognize: UIGestureRecognizer) {
     // check what nodes are tapped
-    let p = gestureRecognize.locationInView(scnView)
+    let p = gestureRecognize.location(in: scnView)
     let hitResults = scnView.hitTest(p, options: nil)
     // check that we clicked on at least one object
     if hitResults.count > 0 {
@@ -94,19 +94,19 @@ class GameViewController: UIViewController {
 
         // highlight it
         SCNTransaction.begin()
-        SCNTransaction.setAnimationDuration(0.5)
+        SCNTransaction.animationDuration = 0.5
 
         // on completion - unhighlight
-        SCNTransaction.setCompletionBlock {
+        SCNTransaction.completionBlock = {
             SCNTransaction.begin()
-            SCNTransaction.setAnimationDuration(0.5)
+            SCNTransaction.animationDuration = 0.5
 
-            material.emission.contents = UIColor.blackColor()
+            material.emission.contents = UIColor.black
 
             SCNTransaction.commit()
         }
 
-        material.emission.contents = UIColor.redColor()
+        material.emission.contents = UIColor.red
 
         SCNTransaction.commit()
     }
@@ -118,25 +118,25 @@ class GameViewController: UIViewController {
   
   func updateShaders() {
     // Recreate shader modifiers
-    var newShaderModifiers: [String: String] = [:]
+    var newShaderModifiers: [SCNShaderModifierEntryPoint: String] = [:]
     if let settingItem = settings.geometrySettings.selected() as? ShaderSettingItem {
-      newShaderModifiers[SCNShaderModifierEntryPointGeometry] = settingItem.shaderProgram
+      newShaderModifiers[SCNShaderModifierEntryPoint.geometry] = settingItem.shaderProgram
     }
     
     if let settingItem = settings.surfaceSettings.selected() as? ShaderSettingItem {
-      newShaderModifiers[SCNShaderModifierEntryPointSurface] = settingItem.shaderProgram
+      newShaderModifiers[SCNShaderModifierEntryPoint.surface] = settingItem.shaderProgram
     }
     
     if let settingItem = settings.lightingSettings.selected() as? ShaderSettingItem {
-      newShaderModifiers[SCNShaderModifierEntryPointLightingModel] = settingItem.shaderProgram
+      newShaderModifiers[SCNShaderModifierEntryPoint.lightingModel] = settingItem.shaderProgram
     }
     
     if let settingItem = settings.fragmentSettings.selected() as? ShaderSettingItem {
-      newShaderModifiers[SCNShaderModifierEntryPointFragment] = settingItem.shaderProgram
+      newShaderModifiers[SCNShaderModifierEntryPoint.fragment] = settingItem.shaderProgram
     }
 
     currentNode!.geometry?.shaderModifiers = newShaderModifiers
-    currentNode!.enumerateChildNodesUsingBlock( { (node: SCNNode!, stop: UnsafeMutablePointer<ObjCBool>) -> Void in
+    currentNode!.enumerateChildNodes( { (node: SCNNode!, stop: UnsafeMutablePointer<ObjCBool>) -> Void in
       node.geometry?.shaderModifiers = newShaderModifiers
       return
     })
@@ -160,45 +160,45 @@ class GameViewController: UIViewController {
   
   // MARK: - Lifecycle / Storyboard
   
-  override func shouldAutorotate() -> Bool {
+  override var shouldAutorotate : Bool {
     return true
   }
   
   // TODO modify this for the table view?
-  override func prefersStatusBarHidden() -> Bool {
+  override var prefersStatusBarHidden : Bool {
     return true
   }
   
-  override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-    if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
-      return UIInterfaceOrientationMask.AllButUpsideDown
+  override var supportedInterfaceOrientations : UIInterfaceOrientationMask {
+    if UIDevice.current.userInterfaceIdiom == .phone {
+      return UIInterfaceOrientationMask.allButUpsideDown
     } else {
-      return UIInterfaceOrientationMask.All
+      return UIInterfaceOrientationMask.all
     }
   }
   
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     // For the different settings popovers, set the items for that button 
     // and callback lambda for update
     switch segue.identifier!  {
     case "modelSettings":
-      let settingsTableView = segue.destinationViewController as! SettingsTableViewController
+      let settingsTableView = segue.destination as! SettingsTableViewController
       settingsTableView.settingData = settings.modelSettings.items
       settingsTableView.gameUpdater = updateModel
     case "geometrySettings":
-      let settingsTableView = segue.destinationViewController as! SettingsTableViewController
+      let settingsTableView = segue.destination as! SettingsTableViewController
       settingsTableView.settingData = settings.geometrySettings.items
       settingsTableView.gameUpdater = updateShaders
     case "surfaceSettings":
-      let settingsTableView = segue.destinationViewController as! SettingsTableViewController
+      let settingsTableView = segue.destination as! SettingsTableViewController
       settingsTableView.settingData = settings.surfaceSettings.items
       settingsTableView.gameUpdater = updateShaders
     case "lightSettings":
-      let settingsTableView = segue.destinationViewController as! SettingsTableViewController
+      let settingsTableView = segue.destination as! SettingsTableViewController
       settingsTableView.settingData = settings.lightingSettings.items
       settingsTableView.gameUpdater = updateShaders
     case "fragmentSettings":
-      let settingsTableView = segue.destinationViewController as! SettingsTableViewController
+      let settingsTableView = segue.destination as! SettingsTableViewController
       settingsTableView.settingData = settings.fragmentSettings.items
       settingsTableView.gameUpdater = updateShaders
     default:

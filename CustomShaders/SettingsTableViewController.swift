@@ -19,23 +19,23 @@ class SettingsTableViewController: UITableViewController {
   
   // MARK: - Table view data source
   
-  override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+  override func numberOfSections(in tableView: UITableView) -> Int {
     return 1
   }
   
-  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return settingData.count
   }
   
-  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("ShaderSettingCell", forIndexPath: indexPath)
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: "ShaderSettingCell", for: indexPath)
     
     cell.textLabel!.text = settingData[indexPath.row].title
     if settingData[indexPath.row].selected {
-      cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+      cell.accessoryType = UITableViewCellAccessoryType.checkmark
     }
     else {
-      cell.accessoryType = UITableViewCellAccessoryType.None
+      cell.accessoryType = UITableViewCellAccessoryType.none
     }
     
     return cell
@@ -43,8 +43,8 @@ class SettingsTableViewController: UITableViewController {
   
   // MARK: - Table View Delagate
   
-  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    tableView.deselectRow(at: indexPath, animated: true)
     
     // Set settings to true, then trigger reload to parent
     for i in 0..<settingData.count {
@@ -52,7 +52,7 @@ class SettingsTableViewController: UITableViewController {
     }
     
     // Animate down, updating view after settings popover closes
-    self.dismissViewControllerAnimated(true, completion: {
+    self.dismiss(animated: true, completion: {
       // Update Game
       
       self.gameUpdater?()
@@ -62,7 +62,7 @@ class SettingsTableViewController: UITableViewController {
 
   // MARK: - Status Bar
   
-  override func prefersStatusBarHidden() -> Bool {
+  override var prefersStatusBarHidden : Bool {
     return true
   }
 }

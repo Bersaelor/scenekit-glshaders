@@ -15,8 +15,8 @@ class ShaderData: NSObject {
   
   init(filename: String) {
     self.filename = filename
-    let path = NSBundle.mainBundle().pathForResource(self.filename, ofType: "shader")
-    shaderProgram = try! String(contentsOfFile: path!, encoding: NSUTF8StringEncoding)
+    let path = Bundle.main.path(forResource: self.filename, ofType: "shader")
+    shaderProgram = try! String(contentsOfFile: path!, encoding: String.Encoding.utf8)
   }
 }
 
@@ -26,7 +26,7 @@ class ModelData: NSObject {
   
   init(filename: String, nodeName: String, nodeSetup: ((SCNNode) -> Void)? = nil) {
     self.filename = filename
-    node = SCNScene(named: "art.scnassets/\(filename).dae")?.rootNode.childNodeWithName(nodeName, recursively: true) as SCNNode!
+    node = SCNScene(named: "art.scnassets/\(filename).dae")?.rootNode.childNode(withName: nodeName, recursively: true) as SCNNode!
     nodeSetup?(node)
   }
   
