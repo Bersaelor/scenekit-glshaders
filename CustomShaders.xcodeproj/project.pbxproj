@@ -18,7 +18,7 @@
 		51F484AE1A223BF000B4954F /* SceneKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51F484AD1A223BF000B4954F /* SceneKit.framework */; };
 		51F484B01A223C0100B4954F /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51F484AF1A223C0100B4954F /* OpenGLES.framework */; };
 		51F484B21A223D9100B4954F /* sm_surf.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 51F484B11A223D9100B4954F /* sm_surf.glsl */; };
-		51F484B41A223D9E00B4954F /* fixed_toon.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 51F484B31A223D9E00B4954F /* fixed_toon.glsl */; };
+		51F484B41A223D9E00B4954F /* toon_with_specular.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 51F484B31A223D9E00B4954F /* toon_with_specular.glsl */; };
 		51F484F21A22540300B4954F /* sm_light.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 51F484F11A22540300B4954F /* sm_light.glsl */; };
 		51F484F41A22541900B4954F /* sm_frag.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 51F484F31A22541900B4954F /* sm_frag.glsl */; };
 		51F484F61A22542100B4954F /* sm_geom.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 51F484F51A22542100B4954F /* sm_geom.glsl */; };
@@ -29,7 +29,7 @@
 		51F485091A2780E300B4954F /* twisted.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 51F485081A2780E300B4954F /* twisted.glsl */; };
 		51F4850C1A27942400B4954F /* mask.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 51F4850B1A27942400B4954F /* mask.glsl */; };
 		51F4850E1A27954D00B4954F /* outline.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 51F4850D1A27954D00B4954F /* outline.glsl */; };
-		51F485101A279C9C00B4954F /* light_source_toon.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 51F4850F1A279C9C00B4954F /* light_source_toon.glsl */; };
+		51F485101A279C9C00B4954F /* diffuse_toon.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 51F4850F1A279C9C00B4954F /* diffuse_toon.glsl */; };
 		51F485121A27DEB300B4954F /* bubble.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 51F485111A27DEB300B4954F /* bubble.glsl */; };
 		51F485141A27E3F400B4954F /* alpha_dot_product.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 51F485131A27E3F400B4954F /* alpha_dot_product.glsl */; };
 		51F485161A27E5EC00B4954F /* nb_surf.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 51F485151A27E5EC00B4954F /* nb_surf.glsl */; };
@@ -62,7 +62,7 @@
 		51F484AD1A223BF000B4954F /* SceneKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SceneKit.framework; path = System/Library/Frameworks/SceneKit.framework; sourceTree = SDKROOT; };
 		51F484AF1A223C0100B4954F /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		51F484B11A223D9100B4954F /* sm_surf.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sm_surf.glsl; sourceTree = "<group>"; };
-		51F484B31A223D9E00B4954F /* fixed_toon.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fixed_toon.glsl; sourceTree = "<group>"; };
+		51F484B31A223D9E00B4954F /* toon_with_specular.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = toon_with_specular.glsl; sourceTree = "<group>"; };
 		51F484F11A22540300B4954F /* sm_light.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sm_light.glsl; sourceTree = "<group>"; };
 		51F484F31A22541900B4954F /* sm_frag.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sm_frag.glsl; sourceTree = "<group>"; };
 		51F484F51A22542100B4954F /* sm_geom.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sm_geom.glsl; sourceTree = "<group>"; };
@@ -73,7 +73,7 @@
 		51F485081A2780E300B4954F /* twisted.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = twisted.glsl; sourceTree = "<group>"; };
 		51F4850B1A27942400B4954F /* mask.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mask.glsl; sourceTree = "<group>"; };
 		51F4850D1A27954D00B4954F /* outline.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = outline.glsl; sourceTree = "<group>"; };
-		51F4850F1A279C9C00B4954F /* light_source_toon.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = light_source_toon.glsl; sourceTree = "<group>"; };
+		51F4850F1A279C9C00B4954F /* diffuse_toon.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = diffuse_toon.glsl; sourceTree = "<group>"; };
 		51F485111A27DEB300B4954F /* bubble.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bubble.glsl; sourceTree = "<group>"; };
 		51F485131A27E3F400B4954F /* alpha_dot_product.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = alpha_dot_product.glsl; sourceTree = "<group>"; };
 		51F485151A27E5EC00B4954F /* nb_surf.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = nb_surf.glsl; sourceTree = "<group>"; };
@@ -173,7 +173,7 @@
 		51F484F81A22557100B4954F /* WWDC Shaders */ = {
 			isa = PBXGroup;
 			children = (
-				51F484B31A223D9E00B4954F /* fixed_toon.glsl */,
+				51F484B31A223D9E00B4954F /* toon_with_specular.glsl */,
 				512732C31A1C0D410070D96E /* geometry_ripple.glsl */,
 				51F484F51A22542100B4954F /* sm_geom.glsl */,
 				51F484B11A223D9100B4954F /* sm_surf.glsl */,
@@ -198,7 +198,7 @@
 			children = (
 				51F485131A27E3F400B4954F /* alpha_dot_product.glsl */,
 				51F485111A27DEB300B4954F /* bubble.glsl */,
-				51F4850F1A279C9C00B4954F /* light_source_toon.glsl */,
+				51F4850F1A279C9C00B4954F /* diffuse_toon.glsl */,
 				51F4850D1A27954D00B4954F /* outline.glsl */,
 				51F4850B1A27942400B4954F /* mask.glsl */,
 				51F485151A27E5EC00B4954F /* nb_surf.glsl */,
@@ -294,7 +294,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				51F485101A279C9C00B4954F /* light_source_toon.glsl in Resources */,
+				51F485101A279C9C00B4954F /* diffuse_toon.glsl in Resources */,
 				51F484B21A223D9100B4954F /* sm_surf.glsl in Resources */,
 				512732AE1A1BEBB70070D96E /* LaunchScreen.xib in Resources */,
 				512732C41A1C0D410070D96E /* geometry_ripple.glsl in Resources */,
@@ -307,7 +307,7 @@
 				51F485091A2780E300B4954F /* twisted.glsl in Resources */,
 				51F484F61A22542100B4954F /* sm_geom.glsl in Resources */,
 				512732A41A1BEBB70070D96E /* art.scnassets in Resources */,
-				51F484B41A223D9E00B4954F /* fixed_toon.glsl in Resources */,
+				51F484B41A223D9E00B4954F /* toon_with_specular.glsl in Resources */,
 				51F485181A27EB7600B4954F /* nb_frag.glsl in Resources */,
 				51F485121A27DEB300B4954F /* bubble.glsl in Resources */,
 				51F485141A27E3F400B4954F /* alpha_dot_product.glsl in Resources */,

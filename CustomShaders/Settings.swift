@@ -39,8 +39,8 @@ class AllSettings: NSObject {
 
   var lightingSettings = Settings(items: [
     NoneSettingItem(),
-    ShaderSettingItem(shaderData: ShaderData(filename: "fixed_toon")),
-    ShaderSettingItem(shaderData: ShaderData(filename: "light_source_toon")),
+    ShaderSettingItem(shaderData: ShaderData(filename: "toon_with_specular")),
+    ShaderSettingItem(shaderData: ShaderData(filename: "diffuse_toon")),
     ShaderSettingItem(shaderData: ShaderData(filename: "sm_light"))
   ])
   
