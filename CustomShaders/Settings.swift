@@ -46,6 +46,7 @@ class AllSettings: NSObject {
   var fragmentSettings = Settings(items: [
     NoneSettingItem(),
     ShaderSettingItem(shaderData: ShaderData(filename: "sm_frag")),
+    ShaderSettingItem(shaderData: ShaderData(filename: "nb_frag")),
     ShaderSettingItem(shaderData: ShaderData(filename: "mask")),
     ShaderSettingItem(shaderData: ShaderData(filename: "red_dot_product")),
     ShaderSettingItem(shaderData: ShaderData(filename: "alpha_dot_product")),
