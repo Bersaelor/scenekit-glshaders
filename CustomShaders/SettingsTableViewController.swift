@@ -32,10 +32,10 @@ class SettingsTableViewController: UITableViewController {
     
     cell.textLabel!.text = settingData[indexPath.row].title
     if settingData[indexPath.row].selected {
-      cell.accessoryType = UITableViewCellAccessoryType.checkmark
+      cell.accessoryType = UITableViewCell.AccessoryType.checkmark
     }
     else {
-      cell.accessoryType = UITableViewCellAccessoryType.none
+      cell.accessoryType = UITableViewCell.AccessoryType.none
     }
     
     return cell
