@@ -12,15 +12,14 @@ import SceneKit
 class AllSettings: NSObject {
   
   var modelSettings = Settings(items: [
-    ModelSettingItem(modelData: ModelData(name: "Sphere", node: AllSettings.sphereNode()),
-                     selected:  true),
+    ModelSettingItem(modelData: ModelData(name: "Sphere", node: AllSettings.sphereNode())),
     ModelSettingItem(modelData: ModelData(name: "Cube", node: AllSettings.cubeNode())),
     ModelSettingItem(modelData: ModelData(name: "Torus", node: AllSettings.torusNode())),
     ModelSettingItem(modelData: ModelData(name: "Text", node: AllSettings.textNode("Graphics\nHearts\nYou"))),
     ModelSettingItem(modelData: ModelData(name: "Planets", node: AllSettings.planets())),
     ModelSettingItem(modelData: ModelData(filename: "ship", nodeName: "shipMesh")),
     ModelSettingItem(modelData: ModelData(filename: "suzanne_materials", nodeName: "Suzanne")),
-    ModelSettingItem(modelData: ModelData(filename: "suzanne_painted", nodeName: "Suzanne"))
+    ModelSettingItem(modelData: ModelData(filename: "suzanne_painted", nodeName: "Suzanne"), selected: true)
     ])
   
   var geometrySettings = Settings(items: [
