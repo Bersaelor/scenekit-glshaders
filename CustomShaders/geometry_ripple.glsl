@@ -1,6 +1,9 @@
+uniform float Amplitude = 0.2;
+uniform float Frequency = 5.0;
+
+#pragma body
+
 // Waves Modifier
-const float Amplitude = 0.2;
-const float Frequency = 5.0;
 vec2 nrm = _geometry.position.xz;
 float len = length(nrm)+0.0001; // for robustness
 nrm /= len;
