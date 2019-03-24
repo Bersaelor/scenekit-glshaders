@@ -1,6 +1,6 @@
 #pragma transparent
 
-const float fragIntensity = 1.0;
+uniform float fragIntensity = 1.0;
 
 float videoShadow = 1.0;
 float y = gl_FragCoord.y + u_time * 100.0;
