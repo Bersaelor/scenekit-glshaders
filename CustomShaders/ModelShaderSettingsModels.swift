@@ -15,7 +15,7 @@ class ShaderData: NSObject {
   
   init(filename: String) {
     self.filename = filename
-    let path = Bundle.main.path(forResource: self.filename, ofType: "shader")
+    let path = Bundle.main.path(forResource: self.filename, ofType: "glsl")
     shaderProgram = try! String(contentsOfFile: path!, encoding: String.Encoding.utf8)
   }
 }
