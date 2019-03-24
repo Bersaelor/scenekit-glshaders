@@ -1,7 +1,7 @@
 // TODO invert so it does outline? Might have to use a geometry shader for this
 
-const float PIover2 = (3.14159265358979 / 2.0);
-const float lineTolerance = 1.0;
+float PIover2 = (3.14159265358979 / 2.0);
+uniform float lineTolerance = 0.9;
 
 float dotProduct = dot(_surface.view, _surface.normal);
 
